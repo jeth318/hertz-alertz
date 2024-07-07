@@ -2,7 +2,6 @@ import bcrypt from "bcrypt";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 // Your own logic for dealing with plaintext password strings; be careful!
-import { saltAndHashPassword } from "@/utils/password";
 import { User } from "@/app/lib/definitions";
 import { sql } from "@vercel/postgres";
 
@@ -47,7 +46,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // logic to salt and hash password
 
         // logic to verify if user exists
-        user = await getUser(credentials?.email);
+        user = await getUser(credentials?.email as string);
 
         if (!user) {
           // No user found, so this is their first attempt to login
@@ -55,7 +54,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           throw new Error("User not found.");
         }
         const passwordsMatch = await bcrypt.compare(
-          credentials.password,
+          credentials.password as string,
           user.password
         );
 

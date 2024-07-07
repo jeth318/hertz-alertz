@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/bcrypt': ^5.0.2
   '@types/node': ^20
   '@types/react': ^18
   '@types/react-dom': ^18
@@ -25,6 +26,7 @@ dependencies:
   react-dom: 18.3.1_react@18.3.1
 
 devDependencies:
+  '@types/bcrypt': 5.0.2
   '@types/node': 20.14.10
   '@types/react': 18.3.3
   '@types/react-dom': 18.3.0
@@ -326,6 +328,12 @@ packages:
       '@swc/counter': 0.1.3
       tslib: 2.6.3
     dev: false
+
+  /@types/bcrypt/5.0.2:
+    resolution: {integrity: sha512-6atioO8Y75fNcbmj0G7UjI9lXN2pQ/IGJ2FWT4a/btd0Lk9lQalHLKhkgKVZ3r+spnmWUKfbMi1GEe9wyHQfNQ==}
+    dependencies:
+      '@types/node': 20.14.10
+    dev: true
 
   /@types/cookie/0.6.0:
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}

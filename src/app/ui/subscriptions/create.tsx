@@ -10,7 +10,7 @@ export default async function CreateSubscription() {
   const session = await auth();
   const createNewSubscriptionWithId = createNewSubscription.bind(
     null,
-    session?.user?.id
+    session?.user?.id as string
   );
   return (
     <div className="mb-2 w-full rounded-md bg-white p-4 flex flex-row justify-between items-center">
