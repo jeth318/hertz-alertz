@@ -8,3 +8,10 @@ export type City = {
   id: number;
   name: string;
 };
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+};

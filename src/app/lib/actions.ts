@@ -1,12 +1,24 @@
+"use server";
+
 import { revalidatePath } from "next/cache";
-import { fakeSessionUser } from "./placeholder-data";
 import { sql } from "@vercel/postgres";
 import { redirect } from "next/navigation";
 
-export async function getSubscriptionsDataByUserId(id: number) {
+export async function getCitiesData() {
+  const citiesPromise = await sql`SELECT * FROM cities ORDER BY name`;
+  const rows = citiesPromise.rows;
+
+  const prettyData = rows.map((row) => ({
+    id: row.id,
+    name: row.name,
+  }));
+  return prettyData;
+}
+
+export async function getSubscriptionsDataByUserId(id: string) {
   const allSubscriptionsPromise =
     await sql`SELECT * FROM subscriptions AS s WHERE s.user_id = ${id}`;
-  const rows = await allSubscriptionsPromise.rows;
+  const rows = allSubscriptionsPromise.rows;
 
   const prettyData = rows.map((row) => ({
     id: row.id,
@@ -17,8 +29,6 @@ export async function getSubscriptionsDataByUserId(id: number) {
 }
 
 export async function deleteSubscription(id: number) {
-  console.log("IDDDDDD", id);
-
   try {
     await sql`
         DELETE FROM subscriptions AS s WHERE s.id = ${id}  
@@ -36,15 +46,16 @@ export async function deleteSubscription(id: number) {
 }
 
 export async function createNewSubscription(
-  userId: number,
+  userId: string,
   formData: FormData
 ) {
-  const { fromCity, toCity } = {
-    fromCity: formData.get("fromCity")?.toString(),
-    toCity: formData.get("toCity")?.toString(),
+  const { fromCityData, toCityData } = {
+    fromCityData: formData.get("fromCity")?.toString(),
+    toCityData: formData.get("toCity")?.toString(),
   };
 
-  console.log({ fromCity, toCity, userId });
+  //console.log({ fromCity, toCity, userId });
+
   /*   if (typeof fromCity !== "string" || typeof toCity !== "string") {
     console.log("Validation error for cities in create subscription");
     return {
@@ -52,7 +63,7 @@ export async function createNewSubscription(
     };
   } */
 
-  if (fromCity === toCity) {
+  if (fromCityData === toCityData) {
     console.error(
       "Database Error: Pickup and destination cities cannot be identical."
     );
@@ -62,15 +73,16 @@ export async function createNewSubscription(
         "Database Error: Pickup and destination cities cannot be identical.",
     };
   }
-
+  const fromCity = fromCityData === "ALLA" ? null : fromCityData;
+  const toCity = toCityData === "ALLA" ? null : toCityData;
   try {
     await sql`
     INSERT INTO subscriptions (user_id, from_city, to_city)
-    VALUES (${userId}, ${fromCity}, ${toCity})
+    VALUES (${userId}, ${fromCity ? fromCity : null}, ${toCity ? toCity : null})
   `;
     console.log("Subscription inserted OK");
   } catch (error) {
-    console.error("Database Error: Failed to Create Subscription");
+    console.error("Database Error: Failed to Create Subscription", error);
     return {
       message: "Database Error: Failed to Create Subscription.",
     };

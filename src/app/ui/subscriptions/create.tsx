@@ -1,18 +1,20 @@
-import { cities, fakeSessionUser } from "@/app/lib/placeholder-data";
-import { createNewSubscription } from "../../lib/actions";
-export default function CreateSubscription() {
+import { fakeSessionUser } from "@/app/lib/placeholder-data";
+import { createNewSubscription, getCitiesData } from "../../lib/actions";
+import { auth } from "../../../../auth";
+export default async function CreateSubscription() {
   /*   const createNewSubscriptionWithUserId = createNewSubscription.bind(
     null,
     fakeSessionUser.id
   ); */
+  const cities = await getCitiesData();
+  const session = await auth();
+  const createNewSubscriptionWithId = createNewSubscription.bind(
+    null,
+    session?.user?.id
+  );
   return (
     <div className="mb-2 w-full rounded-md bg-white p-4 flex flex-row justify-between items-center">
-      <form
-        action={async (formData) => {
-          "use server";
-          await createNewSubscription(fakeSessionUser.id, formData);
-        }}
-      >
+      <form action={createNewSubscriptionWithId}>
         <div className="flex flex-row">
           <div className="flex flex-col">
             <label htmlFor="from_city">Från</label>
@@ -21,7 +23,7 @@ export default function CreateSubscription() {
           <div>
             <div className="flex flex-col">
               <select name="fromCity" id="fromCity">
-                <option value="Alla">Alla</option>
+                <option value="ALLA">Alla</option>
                 {cities.map((city) => (
                   <option key={city.id} value={city.name}>
                     {city.name}
@@ -29,7 +31,7 @@ export default function CreateSubscription() {
                 ))}
               </select>
               <select name="toCity" id="to_city">
-                <option value="Alla">Alla</option>
+                <option value="ALLA">Alla</option>
                 {cities.map((city) => (
                   <option key={city.id} value={city.name}>
                     {city.name}

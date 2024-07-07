@@ -9,31 +9,26 @@ export const fakeSessionUser = {
 
 const users = [
   {
-    id: 1,
     name: "User",
     email: "user@nextmail.com",
     password: "123456",
   },
   {
-    id: 2,
     name: "Jesper",
     email: "jesper.thornberg@me.com",
     password: "123456",
   },
   {
-    id: 3,
     name: "Joel",
     email: "joel.thornberg@me.com",
     password: "123456",
   },
   {
-    id: 4,
     name: "Sigrid",
     email: "sigrid.thornberg@me.com",
     password: "123456",
   },
   {
-    id: 5,
     name: "Per",
     email: "per.thornberg@me.com",
     password: "123456",
@@ -61,37 +56,37 @@ const offers = [
 const subscriptions = [
   {
     id: 1,
-    user_id: 1,
+    user_id: "a058058e-31b2-4b6a-a0b6-6eb716d9775f",
     from_city: "GÖTEBORG",
     to_city: "STOCKHOLM",
   },
   {
     id: 2,
-    user_id: 2,
+    user_id: "e8a8bc91-4830-47ff-8807-3dea1ea35889",
     from_city: "MALMÖ",
     to_city: "STOCKHOLM",
   },
   {
     id: 3,
-    user_id: 3,
+    user_id: "e8a8bc91-4830-47ff-8807-3dea1ea35889",
     from_city: null,
     to_city: "VÄSTERVIK",
   },
   {
     id: 4,
-    user_id: 2,
+    user_id: "74d135d5-4371-427a-863c-0a27719c06ca",
     from_city: "ÖSTERSUND",
     to_city: "VÄSTERVIK",
   },
   {
     id: 5,
-    user_id: 1,
+    user_id: "65b10060-a209-4920-b6ad-55c183f31b1d",
     from_city: "HÄRNÖSAND",
     to_city: null,
   },
   {
     id: 6,
-    user_id: 5,
+    user_id: "65b10060-a209-4920-b6ad-55c183f31b1d",
     from_city: "RÄTTVIK",
     to_city: "HÄRNÖSAND",
   },

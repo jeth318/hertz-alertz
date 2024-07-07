@@ -8,7 +8,7 @@ async function seedUsers() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
   await client.sql`
     CREATE TABLE IF NOT EXISTS users (
-      id SERIAL PRIMARY KEY,
+      id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       email TEXT NOT NULL UNIQUE,
       password TEXT NOT NULL
@@ -19,8 +19,8 @@ async function seedUsers() {
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       return client.sql`
-        INSERT INTO users (id, name, email, password)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+        INSERT INTO users (name, email, password)
+        VALUES (${user.name}, ${user.email}, ${hashedPassword})
         ON CONFLICT (id) DO NOTHING;
       `;
     })
@@ -102,7 +102,7 @@ async function seedSubscriptions() {
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS subscriptions (
         id SERIAL PRIMARY KEY,
-        user_id INT NOT NULL,
+        user_id TEXT NOT NULL,
         from_city TEXT,
         to_city TEXT,
         CONSTRAINT check_cities_different CHECK (from_city IS DISTINCT FROM to_city),
@@ -136,9 +136,9 @@ export async function GET() {
   try {
     await client.sql`BEGIN`;
     //await seedUsers();
-    //await seedSubscriptions();
+    await seedSubscriptions();
     //await seedOffers();
-    await seedCities();
+    //await seedCities();
     await client.sql`COMMIT`;
 
     return Response.json({ message: "Database seeded successfully" });
