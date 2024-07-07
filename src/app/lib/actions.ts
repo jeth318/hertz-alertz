@@ -1,8 +1,49 @@
 "use server";
 
+import bcrypt from "bcrypt";
+
 import { revalidatePath } from "next/cache";
 import { sql } from "@vercel/postgres";
 import { redirect } from "next/navigation";
+
+export async function addEntry(state: any, formData: FormData) {
+  return {
+    success: true,
+    data: {
+      hej: "på dig",
+    },
+  };
+}
+
+export async function signUp(state: any, formData: FormData) {
+  const { emailData, passwordData, nameData } = {
+    emailData: formData.get("email")?.toString(),
+    passwordData: formData.get("password")?.toString(),
+    nameData: formData.get("name")?.toString(),
+  };
+
+  const checkExistingUserPromise =
+    await sql`SELECT * FROM users AS u WHERE u.email = ${emailData}`;
+
+  const existingUser = checkExistingUserPromise.rows[0];
+  if (existingUser) {
+    console.warn("User already exists. Sign in instead.");
+    return {
+      success: false,
+      errorCode: "EXISTING_ACCOUNT",
+      message: "User already exists. Sign in instead.",
+    };
+  } else {
+    const saltRounds = 10;
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hashedPassword = bcrypt.hashSync(passwordData as string, salt);
+    const insertedUser = await sql`
+      INSERT INTO users (name, email, password)
+      VALUES (${nameData}, ${emailData}, ${hashedPassword})`;
+
+    redirect("/subscriptions");
+  }
+}
 
 export async function getCitiesData() {
   const citiesPromise = await sql`SELECT * FROM cities ORDER BY name`;

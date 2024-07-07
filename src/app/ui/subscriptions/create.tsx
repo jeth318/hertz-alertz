@@ -8,6 +8,8 @@ export default async function CreateSubscription() {
   ); */
   const cities = await getCitiesData();
   const session = await auth();
+  console.log("SESSSSSSSSS", session);
+
   const createNewSubscriptionWithId = createNewSubscription.bind(
     null,
     session?.user?.id as string

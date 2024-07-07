@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 // Your own logic for dealing with plaintext password strings; be careful!
 import { User } from "@/app/lib/definitions";
 import { sql } from "@vercel/postgres";
+import { redirect } from "next/navigation";
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
@@ -35,7 +36,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // e.g. domain, username, password, 2FA token, etc.
       credentials: {
         email: {},
-        password: {},
+        password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
         let user = null;
@@ -59,6 +60,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         );
 
         if (passwordsMatch) {
+          console.log({ user });
           return user;
         }
         throw new Error("Incorrect password.");

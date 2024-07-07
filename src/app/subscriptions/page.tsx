@@ -4,12 +4,16 @@ import Link from "next/link";
 import { getSubscriptionsDataByUserId } from "../lib/actions";
 import UserGreeting from "../ui/user/greeting";
 import { auth } from "../../../auth";
+import { redirect } from "next/navigation";
 export default async function Page() {
   const session = await auth();
   console.log(session);
   const userId = session?.user?.id;
   const subscriptions = await getSubscriptionsDataByUserId(userId || "");
 
+  if (!userId) {
+    redirect("/login");
+  }
   return (
     <main>
       <div className="flex flex-col">

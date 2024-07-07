@@ -1,6 +1,12 @@
-import { signIn } from "../../../auth";
+import { getSession } from "next-auth/react";
+import { auth, signIn } from "../../../auth";
+import { redirect } from "next/navigation";
 
-export default function SignIn() {
+export default async function SignIn() {
+  const session = await auth();
+  if (session?.user?.id) {
+    redirect("/subscriptions");
+  }
   return (
     <form
       action={async (formData) => {
