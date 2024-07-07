@@ -1,7 +1,7 @@
 export type Subscription = {
   id: number;
-  from_city?: number | null;
-  to_city?: number | null;
+  from_city?: string | null;
+  to_city?: string | null;
 };
 
 export type City = {

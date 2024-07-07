@@ -10,7 +10,7 @@ export default function CreateSubscription() {
         <div>
           <div className="flex flex-col">
             <select id="from_city">
-              <option defaultValue="hej">Alla</option>
+              <option value="Alla">Alla</option>
               {cities.map((city) => (
                 <option key={city.id} value={city.name}>
                   {city.name}
@@ -18,6 +18,7 @@ export default function CreateSubscription() {
               ))}
             </select>
             <select id="to_city">
+              <option value="Alla">Alla</option>
               {cities.map((city) => (
                 <option key={city.id} value={city.name}>
                   {city.name}
