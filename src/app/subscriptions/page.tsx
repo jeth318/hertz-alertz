@@ -1,7 +1,10 @@
 import Table from "../ui/subscriptions/table";
 import { subscriptions } from "../lib/placeholder-data";
 import Link from "next/link";
-export default function Page() {
+import { getSubscriptionsDataByUserId } from "../lib/actions";
+export default async function Page() {
+  const subscriptions = await getSubscriptionsDataByUserId(2);
+
   return (
     <main>
       <div className="flex flex-col">

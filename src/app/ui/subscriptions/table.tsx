@@ -1,3 +1,4 @@
+import { deleteSubscription } from "@/app/lib/actions";
 import { Subscription } from "@/app/lib/definitions";
 
 type Props = {
@@ -50,8 +51,13 @@ export default function Table({ subscriptions }: Props) {
                 </div>
               </div>
               <div className="flex flex-row">
-                <form action="">
-                  <button className="bg-red-200" type="submit">
+                <form
+                  action={async () => {
+                    "use server";
+                    await deleteSubscription(sub.id);
+                  }}
+                >
+                  <button type="submit" className="bg-red-200">
                     Delete
                   </button>
                 </form>
