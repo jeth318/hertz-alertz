@@ -14,7 +14,7 @@ export default async function Home() {
         <div className="mt-10"></div>
         <div className="flex flex-col gap-8">
           {!isLoggedIn && <Link href="/sign-up">Create account</Link>}
-          <Link href={`/api/auth/${isLoggedIn ? "signout" : "signin"}`}>
+          <Link href={`/${isLoggedIn ? "api/auth/signout" : "login"}`}>
             {isLoggedIn ? "Logga ut" : "Logga in"}
           </Link>
           <Link href="/subscriptions">Show my subscriptions</Link>

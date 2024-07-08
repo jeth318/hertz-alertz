@@ -106,8 +106,20 @@ async function seedSubscriptions() {
         from_city TEXT,
         to_city TEXT,
         CONSTRAINT check_cities_different CHECK (from_city IS DISTINCT FROM to_city),
-        CONSTRAINT check_at_least_one_populated CHECK (from_city IS NOT NULL OR to_city IS NOT NULL)
+        CONSTRAINT check_at_least_one_populated CHECK (from_city IS NOT NULL OR to_city IS NOT NULL),
+        CONSTRAINT unique_subscription UNIQUE (user_id, from_city, to_city)
       );
+    `;
+
+    await client.sql`
+      CREATE UNIQUE INDEX unique_user_from_city_idx ON subscriptions (user_id, from_city)
+      WHERE from_city IS NOT NULL AND to_city IS NULL;
+
+      CREATE UNIQUE INDEX unique_user_to_city_idx ON subscriptions (user_id, to_city)
+      WHERE from_city IS NULL AND to_city IS NOT NULL;
+
+      CREATE UNIQUE INDEX unique_user_from_to_city_idx ON subscriptions (user_id, from_city, to_city)
+      WHERE from_city IS NOT NULL AND to_city IS NOT NULL;
     `;
 
     console.log(`Created "subscriptions" table`);

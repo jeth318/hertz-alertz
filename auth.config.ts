@@ -9,7 +9,7 @@ export const authConfig = {
       session.user.id = token.sub as string;
       return session;
     },
-    authorized({ auth, request: { nextUrl } }) {
+    /*     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
       if (isOnDashboard) {
@@ -19,7 +19,7 @@ export const authConfig = {
         return Response.redirect(new URL("/dashboard", nextUrl));
       }
       return true;
-    },
+    }, */
   },
   providers: [], // Add providers with an empty array for now
 } satisfies NextAuthConfig;

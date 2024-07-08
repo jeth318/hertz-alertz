@@ -5,6 +5,8 @@ import bcrypt from "bcrypt";
 import { revalidatePath } from "next/cache";
 import { sql } from "@vercel/postgres";
 import { redirect } from "next/navigation";
+import { signIn } from "../../../auth";
+import { AuthError } from "next-auth";
 
 export async function addEntry(state: any, formData: FormData) {
   return {
@@ -13,6 +15,20 @@ export async function addEntry(state: any, formData: FormData) {
       hej: "på dig",
     },
   };
+}
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData
+) {
+  try {
+    await signIn("credentials", formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      return error.cause?.err?.message;
+    }
+    throw error;
+  }
 }
 
 export async function signUp(state: any, formData: FormData) {
@@ -94,15 +110,6 @@ export async function createNewSubscription(
     fromCityData: formData.get("fromCity")?.toString(),
     toCityData: formData.get("toCity")?.toString(),
   };
-
-  //console.log({ fromCity, toCity, userId });
-
-  /*   if (typeof fromCity !== "string" || typeof toCity !== "string") {
-    console.log("Validation error for cities in create subscription");
-    return {
-      message: "Validation error for cities in create subscription.",
-    };
-  } */
 
   if (fromCityData === toCityData) {
     console.error(

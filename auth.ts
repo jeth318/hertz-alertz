@@ -42,7 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         let user = null;
 
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Invalid input.");
+          throw new Error("INVALID_INPUT");
         }
         // logic to salt and hash password
 
@@ -52,7 +52,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!user) {
           // No user found, so this is their first attempt to login
           // meaning this is also the place you could do registration
-          throw new Error("User not found.");
+          throw new Error("USER_NOT_FOUND");
         }
         const passwordsMatch = await bcrypt.compare(
           credentials.password as string,
@@ -63,7 +63,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           console.log({ user });
           return user;
         }
-        throw new Error("Incorrect password.");
+        throw new Error("INVALID_CREDENTIALS");
       },
     }),
   ],
