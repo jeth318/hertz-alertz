@@ -7,13 +7,26 @@ export default async function Page() {
   const { userId, name } = await routeGuard();
   const subscriptions = await getSubscriptionsDataByUserId(userId);
   return (
-    <main>
-      <div className="flex flex-col">
+    <main className="h-screen">
+      <div className="flex flex-col p-">
         <UserGreeting name={name || ""} />
-        <Link href="/">Go home</Link>
-        <Link href="/subscriptions/create">Create new</Link>
+
+        <div className="flex p-2 justify-between">
+          <div>
+            <Link className="btn btn-primary" href="/subscriptions/create">
+              Add new
+            </Link>
+          </div>
+          <div>
+            <Link className="btn btn-secondary self-end" href="/">
+              Sign out
+            </Link>
+          </div>
+        </div>
+        <div className="self-end"></div>
+        <Table subscriptions={subscriptions} />
+        <div className="flex justify-center"></div>
       </div>
-      <Table subscriptions={subscriptions} />
     </main>
   );
 }

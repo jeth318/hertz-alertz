@@ -33,21 +33,29 @@ export default function Table({ subscriptions }: Props) {
 
   function TableMobile() {
     return (
-      <div>
+      <div className="p-2 rounded-md bg-white md:container mx-auto flex flex-col gap-2">
         {subscriptions.map((sub) => {
           return (
             <div
               key={sub.id}
-              className="mb-2 w-full rounded-md bg-white p-4 flex flex-row justify-between items-center"
+              className="bg-blue-100 mb-2 w-full rounded-md  p-4 flex flex-row justify-between items-center"
             >
               <div className="flex flex-row">
-                <div>
-                  {sub.from_city && <p>Från</p>}
-                  {sub.to_city && <p>Till</p>}
+                <div className="w-12">
+                  {sub.from_city && <p className="mr-2">Från</p>}
+                  {sub.to_city && <p className="mr-2">Till</p>}
                 </div>
                 <div>
-                  {sub.from_city && <div>{sub.from_city}</div>}
-                  {sub.to_city && <div>{sub.to_city}</div>}
+                  {sub.from_city && (
+                    <div>
+                      <b>{sub.from_city}</b>
+                    </div>
+                  )}
+                  {sub.to_city && (
+                    <div>
+                      <b>{sub.to_city}</b>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex flex-row">
@@ -57,7 +65,7 @@ export default function Table({ subscriptions }: Props) {
                     await deleteSubscription(sub.id);
                   }}
                 >
-                  <button type="submit" className="bg-red-200">
+                  <button type="submit" className="btn btn-sm">
                     Delete
                   </button>
                 </form>
@@ -68,10 +76,11 @@ export default function Table({ subscriptions }: Props) {
       </div>
     );
   }
+
   return (
     <>
       <TableMobile />
-      <TableDesktop />
+      {/* <TableDesktop /> */}
     </>
   );
 }
