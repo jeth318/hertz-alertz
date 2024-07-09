@@ -9,7 +9,6 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
-        <h1 className="text-2xl bold">Hertz Alertz 🚕</h1>
         <div className="mt-10"></div>
         <div className="flex flex-col gap-8">
           {!isLoggedIn && <Link href="/sign-up">Create account</Link>}
