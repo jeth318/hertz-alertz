@@ -8,7 +8,6 @@ export default async function CreateSubscription() {
   ); */
   const cities = await getCitiesData();
   const session = await auth();
-  console.log("SESSSSSSSSS", session);
 
   const createNewSubscriptionWithId = createNewSubscription.bind(
     null,
@@ -16,7 +15,7 @@ export default async function CreateSubscription() {
   );
   return (
     <>
-      <div className="card bg-base-100 dark:bg-slate-700">
+      <div className="card bg-base-100 dark:bg-black">
         <figure className="pt-4 ">
           <Image
             className="dark:hidden"
@@ -44,7 +43,7 @@ export default async function CreateSubscription() {
                 <select
                   name="fromCity"
                   id="fromCity"
-                  className="select select-bordered w-full max-w-md"
+                  className="select select-bordered w-full max-w-md dark:bg-gray-900 dark:text-stone-300"
                 >
                   <option disabled selected>
                     Från
@@ -58,7 +57,7 @@ export default async function CreateSubscription() {
                 <select
                   name="toCity"
                   id="to_city"
-                  className="select select-bordered w-full max-w-md"
+                  className="select select-bordered w-full max-w-md dark:bg-gray-900 dark:text-stone-300"
                 >
                   <option disabled selected>
                     Till
@@ -72,7 +71,10 @@ export default async function CreateSubscription() {
               </div>
             </div>
             <div className="card-actions justify-end pt-4">
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary dark:btn-ghost dark:border-gray-400 dark:text-stone-300"
+              >
                 Lägg till
               </button>
             </div>

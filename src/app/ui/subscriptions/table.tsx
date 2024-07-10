@@ -34,10 +34,10 @@ export default function Table({ subscriptions }: Props) {
 
   function TableMobile2() {
     return (
-      <div className="overflow-x-auto overflow-y-auto max-h-96 rounded-lg">
+      <div className="overflow-x-auto overflow-y-auto max-h-96 rounded-md">
         <table className="table">
           <thead>
-            <tr className="dark:text-white">
+            <tr className="dark:text-stone-300">
               <th>
                 <b>Från</b>
               </th>

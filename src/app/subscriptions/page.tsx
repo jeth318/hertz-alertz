@@ -8,7 +8,7 @@ export default async function Page() {
   const subscriptions = await getSubscriptionsDataByUserId(userId);
   return (
     <div>
-      <div className="flex justify-between p-2 items-center bg-slate-100 dark:bg-slate-700 rounded-md">
+      <div className="flex justify-between p-2 items-center bg-slate-100 dark:bg-black rounded-md">
         <h3 className="text-md p-2">
           <b>Mina bevakningar</b>
         </h3>
