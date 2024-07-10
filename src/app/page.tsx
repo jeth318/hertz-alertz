@@ -30,7 +30,7 @@ export default async function Home() {
       <div className="flex justify-center pt-4">
         {!isLoggedIn && (
           <div className="flex flex-row gap-4 items-center">
-            <Link className="btn btn-primary w-40" href="/sign-in">
+            <Link className="btn btn-primary w-40" href="/login">
               Logga in
             </Link>
             <Link className="link w-40  text-right " href="/sign-up">
