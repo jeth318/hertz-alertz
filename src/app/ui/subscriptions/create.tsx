@@ -1,4 +1,3 @@
-import { fakeSessionUser } from "@/app/lib/placeholder-data";
 import { createNewSubscription, getCitiesData } from "../../lib/actions";
 import { auth } from "../../../../auth";
 import Image from "next/image";
