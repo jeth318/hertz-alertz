@@ -11,9 +11,5 @@ export default async function Page() {
   if (!userId) {
     redirect("/login");
   }
-  return (
-    <>
-      <CreateSubscription />
-    </>
-  );
+  return <CreateSubscription />;
 }

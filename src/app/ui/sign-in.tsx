@@ -30,7 +30,7 @@ export default function SignIn() {
 
   return (
     <form className="shadow-md" action={formAction}>
-      <div className="p-8 align-center rounded-md dark:bg-slate-700 dark:text-black bg-white md:container mx-auto flex flex-col gap-4">
+      <div className="p-8 align-center rounded-md dark:bg-slate-700 dark:text-black bg-base-100 mx-auto flex flex-col gap-4">
         <div className="flex justify-center">
           <Image
             className="dark:hidden"
@@ -80,7 +80,7 @@ export default function SignIn() {
             className="grow"
           />
         </label>
-        {/*       <div className="flex justify-center bg-white rounded-md">
+        {/*       <div className="flex justify-center bg-base-100 rounded-md">
         <form action={formAction}>
           <div className="flex flex-col">
             <label>
@@ -121,7 +121,7 @@ export default function SignIn() {
           </div>
         )}
         <button type="submit" className="btn btn-primary">
-          Log in
+          Logga in
         </button>
       </div>
     </form>

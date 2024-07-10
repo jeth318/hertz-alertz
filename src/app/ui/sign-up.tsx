@@ -16,9 +16,9 @@ export default function SignUp() {
   }, [state]);
 
   return (
-    <div className="card bg-base-100 shadow-xl dark:text-black">
+    <div className="card dark:bg-slate-700  bg-base-100 shadow-xl dark:text-black">
       <div className="card-body">
-        <h2 className="card-title ">Sign up</h2>
+        <h2 className="card-title dark:text-white ">Dina uppgifter</h2>
         <form className="pt-4" action={formAction}>
           <div className="flex flex-col gap-4">
             <label className="input input-bordered flex items-center gap-2">
@@ -35,7 +35,7 @@ export default function SignUp() {
                 type="text"
                 name="email"
                 className="grow"
-                placeholder="Email"
+                placeholder="E-post"
               />
             </label>
             <label className="input input-bordered flex items-center gap-2">
@@ -51,7 +51,7 @@ export default function SignUp() {
                 type="text"
                 name="name"
                 className="grow"
-                placeholder="Name"
+                placeholder="Förnamn (om du vill)"
               />
             </label>
             <label className="input input-bordered flex items-center gap-2">
@@ -70,7 +70,7 @@ export default function SignUp() {
               <input
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Lösenord"
                 className="grow"
               />
             </label>
@@ -82,7 +82,7 @@ export default function SignUp() {
           </div>
           <div className="card-actions justify-end pt-6">
             <button type="submit" className="btn btn-primary">
-              Sign up
+              Registrera
             </button>
           </div>
         </form>

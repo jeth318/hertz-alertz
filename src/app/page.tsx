@@ -8,8 +8,8 @@ export default async function Home() {
   console.log({ session });
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-md py-4">
-      <div className="container flex justify-center bg:white dark:bg-slate-800">
+    <div className="flex flex-col bg-base-100 dark:bg-slate-700 rounded-md py-4 shadow-lg">
+      <div className="flex justify-center">
         <Image
           className="dark:hidden"
           src="/car-running.gif"
@@ -17,8 +17,11 @@ export default async function Home() {
           width={200}
           alt="car-running"
         />
+        <div className="dark:flex hidden">
+          <Image src="/car-black.svg" height={100} width={100} alt="car" />
+        </div>
       </div>
-      <p className="p-4">
+      <p className="p-6">
         Den här tjänsten hjälper dig att övervaka och hitta gratisresor hos
         Hertz. Genom att skapa bevakningar för resor från, till, och mellan
         specifika städer kan du få e-postmeddelanden när nya resor som matchar
@@ -26,9 +29,14 @@ export default async function Home() {
       </p>
       <div className="flex justify-center pt-4">
         {!isLoggedIn && (
-          <Link className="btn btn-primary w-40" href="/sign-up">
-            Skapa konto
-          </Link>
+          <div className="flex flex-row gap-4 items-center">
+            <Link className="btn btn-primary w-40" href="/sign-up">
+              Logga in
+            </Link>
+            <Link className="link w-40  text-right " href="/sign-up">
+              Skapa konto
+            </Link>
+          </div>
         )}
         {isLoggedIn && (
           <Link className="btn btn-primary" href="/subscriptions">

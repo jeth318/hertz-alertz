@@ -34,16 +34,21 @@ export default async function CreateSubscription() {
             och till olika städer. Du kommer få e-postmeddelande när det finns
             resor som matchar dessa.
           </p>
-          <form action={createNewSubscriptionWithId}>
+          <form
+            action={async (formData) => {
+              "use server";
+              return await createNewSubscriptionWithId(formData);
+            }}
+          >
             <div className="flex flex-row dark:text-black">
               <div className="flex w-full flex-col gap-4">
                 <select
                   name="fromCity"
                   id="fromCity"
-                  className="select select-bordered w-full max-w-xs"
+                  className="select select-bordered w-full max-w-md"
                 >
                   <option disabled selected>
-                    Välj stad
+                    Från
                   </option>
                   {cities.map((city) => (
                     <option key={city.id} value={city.name}>
@@ -54,10 +59,10 @@ export default async function CreateSubscription() {
                 <select
                   name="toCity"
                   id="to_city"
-                  className="select select-bordered w-full max-w-xs"
+                  className="select select-bordered w-full max-w-md"
                 >
                   <option disabled selected>
-                    Välj stad
+                    Till
                   </option>
                   {cities.map((city) => (
                     <option key={city.id} value={city.name}>
