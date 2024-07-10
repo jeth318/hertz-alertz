@@ -3,6 +3,7 @@
 import { useFormState } from "react-dom";
 import { authenticate } from "../lib/actions";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const errorMap: Record<string, string> = {
   USER_NOT_FOUND: "Hittade ingen användare med den angivna epostaddressen",
@@ -28,26 +29,23 @@ export default function SignIn() {
   }, [errorMessage]);
 
   return (
-    <form action={formAction}>
-      <div className="p-8 align-center rounded-md bg-white md:container mx-auto flex flex-col gap-4">
-        <h1 className="text-2xl text-center">Logga in</h1>
-        {/*       <label className="input input-bordered flex items-center gap-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 16 16"
-          fill="currentColor"
-          className="h-4 w-4 opacity-70"
-        >
-          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
-        </svg>
-        <input type="text" className="grow" placeholder="Username" />
-      </label> */}
+    <form className="shadow-md" action={formAction}>
+      <div className="p-8 align-center rounded-md dark:bg-slate-700 dark:text-black bg-white md:container mx-auto flex flex-col gap-4">
+        <div className="flex justify-center">
+          <Image
+            className="dark:hidden"
+            alt="moving-car"
+            width={150}
+            height={50}
+            src="/car-running.gif"
+          />
+        </div>
 
         <label className="input input-bordered flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
-            fill="currentColor"
+            fill="dark:white currentColor"
             className="h-4 w-4 opacity-70"
           >
             <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
@@ -65,7 +63,7 @@ export default function SignIn() {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
-            fill="currentColor"
+            fill="dark:white currentColor"
             className="h-4 w-4 opacity-70"
           >
             <path
@@ -78,7 +76,7 @@ export default function SignIn() {
             onChange={() => setHasError(false)}
             name="password"
             type="password"
-            placeholder="******"
+            placeholder="Password"
             className="grow"
           />
         </label>
