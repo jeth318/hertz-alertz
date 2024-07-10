@@ -16,7 +16,7 @@ export default function SignUp() {
   }, [state]);
 
   return (
-    <div className="card bg-base-100 shadow-xl">
+    <div className="card bg-base-100 shadow-xl dark:text-black">
       <div className="card-body">
         <h2 className="card-title ">Sign up</h2>
         <form className="pt-4" action={formAction}>

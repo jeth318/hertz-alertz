@@ -13,7 +13,6 @@ export default async function Page() {
   }
   return (
     <>
-      <Link href="/subscriptions">Back to subscriptions</Link>
       <CreateSubscription />
     </>
   );

@@ -8,8 +8,8 @@ export default async function Layout({
 }) {
   await routeGuard();
   return (
-    <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-      <div className="flex-grow md:overflow-y-auto md:p-12">{children}</div>
+    <div className="flex flex-col md:flex-row md:overflow-hidden dark:bg-slate-600 bg-white md:p-4 rounded-md shadow-lg">
+      <div className="flex-grow md:overflow-y-auto">{children}</div>
     </div>
   );
 }

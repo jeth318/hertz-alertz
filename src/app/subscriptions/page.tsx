@@ -7,26 +7,28 @@ export default async function Page() {
   const { userId, name } = await routeGuard();
   const subscriptions = await getSubscriptionsDataByUserId(userId);
   return (
-    <main className="h-screen">
-      <div className="flex flex-col p-">
-        <UserGreeting name={name || ""} />
-
+    <div>
+      <div className="flex justify-between p-2 items-center bg-slate-100 dark:bg-slate-700 rounded-md">
+        <h3 className="text-md p-2">
+          <b>Mina bevakningar</b>
+        </h3>
+        <div>
+          <Link
+            className="btn btn-sm md:btn-md btn-primary"
+            href="/subscriptions/create"
+          >
+            Ny bevakning
+          </Link>
+        </div>
+      </div>
+      <div className="flex flex-col">
         <div className="flex p-2 justify-between">
-          <div>
-            <Link className="btn btn-primary" href="/subscriptions/create">
-              Add new
-            </Link>
-          </div>
-          <div>
-            <Link className="btn btn-secondary self-end" href="/">
-              Sign out
-            </Link>
-          </div>
+          <div></div>
         </div>
         <div className="self-end"></div>
         <Table subscriptions={subscriptions} />
         <div className="flex justify-center"></div>
       </div>
-    </main>
+    </div>
   );
 }
