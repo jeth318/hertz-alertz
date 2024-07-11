@@ -19,8 +19,8 @@ export default async function Page() {
             </Link>
           </div>
           <div className="flex flew-row gap-8 borderp-2">
-            <p className="text-green-500 text-xl">{`-> Till`}</p>
-            <p className="text-purple-500 text-xl">{`<- Från`}</p>
+            <p className="text-green-500 text-xl">{`-> Från`}</p>
+            <p className="text-purple-500 text-xl">{`<- Till`}</p>
           </div>
           <p>
             {" "}
