@@ -8,7 +8,7 @@ export default async function Layout({
 }) {
   await routeGuard();
   return (
-    <div className="flex flex-col md:flex-row md:overflow-hidden dark:bg-black bg-base-100 md:p-4 rounded-md shadow-lg">
+    <div className="flex flex-col md:flex-row md:overflow-hidden dark:bg-black">
       <div className="flex-grow md:overflow-y-auto">{children}</div>
     </div>
   );

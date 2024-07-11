@@ -7,6 +7,7 @@ import { sql } from "@vercel/postgres";
 import { redirect } from "next/navigation";
 import { signIn } from "../../../auth";
 import { AuthError } from "next-auth";
+import { capitalizeFirst } from "./utils";
 
 export async function addEntry(state: any, formData: FormData) {
   return {
@@ -79,8 +80,8 @@ export async function getSubscriptionsDataByUserId(id: string) {
 
   const prettyData = rows.map((row) => ({
     id: row.id,
-    from_city: row.from_city,
-    to_city: row.to_city,
+    from_city: capitalizeFirst(row.from_city),
+    to_city: capitalizeFirst(row.to_city),
   }));
   return prettyData;
 }
