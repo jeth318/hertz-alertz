@@ -18,10 +18,16 @@ export default async function Home() {
         />
       </div>
       <p className="p-4">
-        Den här tjänsten hjälper dig att övervaka och hitta gratisresor hos
-        Hertz. Genom att skapa bevakningar för resor från, till, och mellan
-        specifika städer kan du få e-postmeddelanden när nya resor som matchar
-        dina kriterier blir tillgängliga.
+        Den här tjänsten hjälper dig att övervaka och hitta gratisresor via{" "}
+        <a
+          className="link link-primary"
+          href="https://www.hertzfreerider.se/sv-se/"
+        >
+          Hertz Freerider
+        </a>
+        . Genom att skapa bevakningar för resor från, till, och mellan specifika
+        städer kan du få e-postmeddelanden när nya resor som matchar dina
+        kriterier blir tillgängliga.
       </p>
       <div className="flex justify-center pt-4">
         {!isLoggedIn && (
@@ -36,7 +42,7 @@ export default async function Home() {
         )}
         {isLoggedIn && (
           <Link className="btn btn-primary" href="/subscriptions">
-            Bevakningar
+            Mina bevakningar
           </Link>
         )}
       </div>
