@@ -5,21 +5,17 @@ import Image from "next/image";
 export default async function Home() {
   const session = await auth();
   const isLoggedIn = !!session?.user?.id;
-  console.log({ session });
 
   return (
     <div className="flex flex-col bg-base-100 dark:text-stone-300 dark:bg-black rounded-md py-4 shadow-lg">
-      <div className="flex justify-center">
+      <div className="flex justify-center max-h-28">
         <Image
-          className="dark:hidden"
-          src="/car-running.gif"
+          src="/car-animation.webp"
+          placeholder="empty"
           height={200}
           width={200}
           alt="car-running"
         />
-        <div className="dark:flex hidden">
-          <Image src="/yellow-car.png" height={200} width={200} alt="car" />
-        </div>
       </div>
       <p className="p-4">
         Den här tjänsten hjälper dig att övervaka och hitta gratisresor hos

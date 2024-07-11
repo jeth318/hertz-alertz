@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { auth } from "../../../auth";
+import classes from "./classes";
 
 export default async function Navbar() {
   const session = await auth();
@@ -18,24 +19,10 @@ export default async function Navbar() {
           <ul className="menu menu-horizontal">
             <li>
               {isLoggedIn && (
-                <Link
-                  className="btn dark:text-stone-300 btn-ghost self-end btn-sm"
-                  href="/api/auth/signout"
-                >
+                <Link className={classes.button} href="/api/auth/signout">
                   Logga ut
                 </Link>
               )}
-              {/*               <details className="dropdown">
-                <summary>Menu</summary>
-                <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                  <li>
-                    <Link href="/subscriptions">Subscriptions</Link>
-                  </li>
-                  <li>
-                    <a>Item 2</a>
-                  </li>
-                </ul>
-              </details> */}
             </li>
           </ul>
         </div>

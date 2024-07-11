@@ -16,15 +16,6 @@ export default async function CreateSubscription() {
   return (
     <>
       <div className="card bg-base-100 dark:bg-black">
-        <figure className="pt-4 ">
-          <Image
-            className="dark:hidden"
-            src="/car-running.gif"
-            alt="car-running"
-            height={200}
-            width={200}
-          />
-        </figure>
         <div className="card-body p-4 gap-4">
           <h2 className="card-title">Ny bevakning</h2>
           <p className="text-sm">

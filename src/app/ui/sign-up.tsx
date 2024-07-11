@@ -4,6 +4,7 @@ import { useFormState } from "react-dom";
 import { signUp } from "../lib/actions";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import classes from "./classes";
 
 export default function SignUp() {
   const [validationError, setValidationError] = useState("");
@@ -16,14 +17,14 @@ export default function SignUp() {
   }, [state]);
 
   return (
-    <div className="card dark:bg-black bg-base-100 shadow-xl dark:text-black">
+    <div className={classes.card}>
       <div className="card-body p-2">
         <h2 className="card-title dark:text-stone-300 pt-2 pl-2">
           Dina uppgifter
         </h2>
         <form className="pt-4" action={formAction}>
           <div className="flex flex-col gap-4">
-            <label className="input input-bordered flex items-center gap-2 dark:bg-gray-900 dark:text-stone-300">
+            <label className={classes.label}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -40,7 +41,7 @@ export default function SignUp() {
                 placeholder="E-post"
               />
             </label>
-            <label className="input input-bordered flex items-center gap-2 dark:bg-gray-900 dark:text-stone-300">
+            <label className={classes.label}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -56,7 +57,7 @@ export default function SignUp() {
                 placeholder="Förnamn (om du vill)"
               />
             </label>
-            <label className="input input-bordered flex items-center gap-2 dark:bg-gray-900 dark:text-stone-300">
+            <label className={classes.label}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -83,10 +84,7 @@ export default function SignUp() {
             )}
           </div>
           <div className="card-actions justify-end pt-6">
-            <button
-              type="submit"
-              className="btn btn-primary dark:btn-ghost dark:border-gray-400 dark:text-stone-300"
-            >
+            <button type="submit" className={classes.button}>
               Registrera
             </button>
           </div>

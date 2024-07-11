@@ -1,7 +1,6 @@
 import Table from "../ui/subscriptions/table";
 import Link from "next/link";
 import { getSubscriptionsDataByUserId } from "../lib/actions";
-import UserGreeting from "../ui/user/greeting";
 import routeGuard from "../lib/route-guard";
 export default async function Page() {
   const { userId, name } = await routeGuard();
@@ -14,7 +13,7 @@ export default async function Page() {
         </h3>
         <div>
           <Link
-            className="btn btn-sm md:btn-md btn-primary"
+            className="btn btn-primary dark:btn-ghost dark:border-gray-400 dark:text-stone-300"
             href="/subscriptions/create"
           >
             Ny bevakning
