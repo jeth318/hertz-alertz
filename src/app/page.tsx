@@ -20,7 +20,7 @@ export default async function Home() {
       <p className="p-4">
         Den här tjänsten hjälper dig att övervaka och hitta gratisresor via{" "}
         <a
-          className="link link-primary"
+          className="link link-secondary"
           href="https://www.hertzfreerider.se/sv-se/"
         >
           Hertz Freerider
