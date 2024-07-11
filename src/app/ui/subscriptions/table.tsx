@@ -21,7 +21,7 @@ export default function Table({ subscriptions }: Props) {
                   <div className="flex flex-col gap-2">
                     {subscription.from_city && (
                       <div className="flex flex-row">
-                        <div className="text-green-500 text-2xl min-w-10">{`->`}</div>{" "}
+                        <div className="text-purple-500 text-2xl min-w-10">{`<-`}</div>{" "}
                         <p className="leading-loose">
                           {subscription.from_city}
                         </p>
@@ -29,7 +29,7 @@ export default function Table({ subscriptions }: Props) {
                     )}
                     {subscription.to_city && (
                       <div className="flex flex-row gap-2">
-                        <div className="text-purple-500 text-2xl min-w-8">{`<-`}</div>{" "}
+                        <div className="text-green-500 text-2xl min-w-8">{`->`}</div>{" "}
                         <p className="leading-loose">{subscription.to_city}</p>
                       </div>
                     )}
