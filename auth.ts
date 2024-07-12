@@ -60,7 +60,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         );
 
         if (passwordsMatch) {
-          console.log({ user });
           return user;
         }
         throw new Error("INVALID_CREDENTIALS");

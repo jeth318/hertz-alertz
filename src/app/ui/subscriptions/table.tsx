@@ -8,10 +8,10 @@ type Props = {
 
 export default function Table({ subscriptions }: Props) {
   return (
-    <div className="overflow-y-auto max-h-60 rounded-md dark:rounded-none">
-      <table className="table  table-pin-rows table-pin-cols ">
-        <thead className=" sticky">
-          <tr>
+    <div className="overflow-y-auto max-h-64 rounded-md dark:rounded-none shadow-md">
+      <table className="table table-pin-rows table-pin-cols">
+        <thead className="sticky">
+          <tr className="dark:border-stone-500">
             <th className="dark:bg-black">
               <div className="flex dark:text-stone-300 items-center gap-1">
                 <p>Från</p> <p className="text-purple-500 text-xl">{`->`}</p>
@@ -29,22 +29,25 @@ export default function Table({ subscriptions }: Props) {
         <tbody className="dark:text-stone-300">
           {subscriptions.map((subscription) => {
             return (
-              <tr key={subscription.id} className="border-b">
-                <td className="p-0 pl-2 border-r">
+              <tr
+                key={subscription.id}
+                className="border-b dark:border-stone-500"
+              >
+                <td className="p-0 pl-2 border-r dark:border-stone-500 w-[40%] overflow-hidden">
                   {subscription.from_city || (
                     <i className="dark:text-gray-700 text-gray-300">
                       Hela landet
                     </i>
                   )}
                 </td>
-                <td className="border-r">
+                <td className="border-r dark:border-stone-500 w-[40%]">
                   {subscription.to_city || (
                     <i className="dark:text-gray-700 text-gray-300">
                       Hela landet
                     </i>
                   )}{" "}
                 </td>
-                <td className="text-right p-0 pr-2">
+                <td className="text-center w-[15%] p-0">
                   <form
                     action={async () => {
                       "use server";
@@ -53,7 +56,7 @@ export default function Table({ subscriptions }: Props) {
                   >
                     <button
                       type="submit"
-                      className="btn btn-sm dark:bg-amber-950 dark:border-red-800"
+                      className="border-stone-400 dark:border-red-800"
                     >
                       ❌
                     </button>

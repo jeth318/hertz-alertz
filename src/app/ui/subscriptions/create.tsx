@@ -1,6 +1,7 @@
 import { createNewSubscription, getCitiesData } from "../../lib/actions";
 import { auth } from "../../../../auth";
 import Image from "next/image";
+import { capitalizeFirst } from "@/app/lib/utils";
 export default async function CreateSubscription() {
   /*   const createNewSubscriptionWithUserId = createNewSubscription.bind(
     null,
@@ -15,9 +16,9 @@ export default async function CreateSubscription() {
   );
   return (
     <>
-      <div className="card bg-base-100 dark:bg-black">
-        <div className="card-body p-4 gap-4">
-          <h2 className="card-title">Ny bevakning</h2>
+      <div className="bg-base-100 dark:text-stone-300 dark:bg-black shadow-md rounded-md">
+        <div className="flex flex-col p-4 gap-4">
+          <h1 className="text-xl font-semibold">Ny bevakning</h1>
           <p className="text-sm">
             Här kan du skapa nya bevakningar på resor från, till eller både från
             och till olika städer. Du kommer få e-postmeddelande när det finns
@@ -41,7 +42,7 @@ export default async function CreateSubscription() {
                   </option>
                   {cities.map((city) => (
                     <option key={city.id} value={city.name}>
-                      {city.name}
+                      {capitalizeFirst(city.name)}
                     </option>
                   ))}
                 </select>
@@ -55,7 +56,7 @@ export default async function CreateSubscription() {
                   </option>
                   {cities.map((city) => (
                     <option key={city.id} value={city.name}>
-                      {city.name}
+                      {capitalizeFirst(city.name)}
                     </option>
                   ))}
                 </select>
@@ -64,7 +65,7 @@ export default async function CreateSubscription() {
             <div className="card-actions justify-end pt-4">
               <button
                 type="submit"
-                className="btn btn-primary dark:btn-ghost dark:border-gray-400 dark:text-stone-300"
+                className="btn btn-sm btn-primary dark:btn-ghost dark:bg-black dark:text-hertz dark:border-hertz"
               >
                 Lägg till
               </button>

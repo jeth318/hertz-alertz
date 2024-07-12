@@ -7,7 +7,7 @@ export default async function Home() {
   const isLoggedIn = !!session?.user?.id;
 
   return (
-    <div className="flex flex-col bg-base-100 dark:text-stone-300 dark:bg-black rounded-md py-4 shadow-lg">
+    <div className="flex flex-col bg-base-100 dark:text-stone-300 dark:bg-black rounded-md py-4 shadow-md">
       <div className="flex justify-center max-h-28">
         <Image
           src="/car-animation.webp"
@@ -41,7 +41,10 @@ export default async function Home() {
           </div>
         )}
         {isLoggedIn && (
-          <Link className="btn btn-primary" href="/subscriptions">
+          <Link
+            className="btn btn-primary shadow-md dark:bg-black dark:text-hertz dark:border-hertz"
+            href="/subscriptions"
+          >
             Mina bevakningar
           </Link>
         )}

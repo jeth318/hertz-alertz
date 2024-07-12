@@ -5,7 +5,6 @@ import classes from "./classes";
 export default async function Navbar() {
   const session = await auth();
   const isLoggedIn = !!session?.user?.id;
-  console.log({ session });
 
   return (
     <div className="navbar w-full justify-center bg-base-100 dark:bg-stone-800 dark:text-stone-300 sticky top-0 z-10 shadow-md">

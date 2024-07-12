@@ -80,8 +80,8 @@ export async function getSubscriptionsDataByUserId(id: string) {
 
   const prettyData = rows.map((row) => ({
     id: row.id,
-    from_city: capitalizeFirst(row.from_city),
-    to_city: capitalizeFirst(row.to_city),
+    from_city: row.from_city,
+    to_city: row.to_city,
   }));
   return prettyData;
 }

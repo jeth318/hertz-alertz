@@ -3,15 +3,16 @@ import Link from "next/link";
 import { getSubscriptionsDataByUserId } from "../lib/actions";
 import routeGuard from "../lib/route-guard";
 export default async function Page() {
-  const { userId, name } = await routeGuard();
+  const { userId, name, email } = await routeGuard();
   const subscriptions = await getSubscriptionsDataByUserId(userId);
   return (
     <div className="flex flex-col gap-4 dark:text-stone-300">
       <div className="flex flex-col bg-base-100 dark:bg-black rounded-md shadow-md">
-        <div className="p-4 flex flex-row items-center justify-between">
+        <div className="p-4 flex flex-col">
           <h3 className="text-xl font-semibold">Mina bevakningar</h3>
+          <p className="text-sm pb-4 dark:text-stone-500">{email}</p>
           <Link
-            className="btn btn-sm btn-primary "
+            className="btn btn-sm shadow-md btn-primary self-start dark:bg-black dark:text-hertz dark:border-hertz"
             href="/subscriptions/create"
           >
             Skapa ny
@@ -22,8 +23,7 @@ export default async function Page() {
         <div className="flex flex-col gap-4">
           <p className="text-sm">
             Här kan du välja att bevaka resor från de städer som Hertz har
-            bilar. Du kan välja att få e-post om alla resor från en stad, till
-            en stad eller mer specifikt mellan två städer.
+            bilar. När en resa matchar en bevakning får du en notis via e-post.
           </p>
         </div>
       </div>
