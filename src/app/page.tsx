@@ -42,7 +42,7 @@ export default async function Home() {
         )}
         {isLoggedIn && (
           <Link
-            className="btn btn-primary shadow-md dark:bg-black dark:text-hertz dark:border-hertz"
+            className="btn btn-primary dark:hover:text-black shadow-md dark:bg-black dark:text-hertz dark:border-hertz"
             href="/subscriptions"
           >
             Mina bevakningar

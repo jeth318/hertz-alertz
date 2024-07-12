@@ -65,7 +65,7 @@ export default async function CreateSubscription() {
             <div className="card-actions justify-end pt-4">
               <button
                 type="submit"
-                className="btn btn-sm btn-primary dark:btn-ghost dark:bg-black dark:text-hertz dark:border-hertz"
+                className="btn btn-sm btn-primary dark:hover:text-black  dark:bg-black dark:text-hertz dark:border-hertz"
               >
                 Lägg till
               </button>

@@ -12,7 +12,7 @@ export default async function Page() {
           <h3 className="text-xl font-semibold">Mina bevakningar</h3>
           <p className="text-sm pb-4 dark:text-stone-500">{email}</p>
           <Link
-            className="btn btn-sm shadow-md btn-primary self-start dark:bg-black dark:text-hertz dark:border-hertz"
+            className="btn btn-sm shadow-md dark:hover:text-black btn-primary self-start dark:bg-black dark:text-hertz dark:border-hertz"
             href="/subscriptions/create"
           >
             Skapa ny
