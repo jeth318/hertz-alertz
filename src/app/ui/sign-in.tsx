@@ -4,6 +4,7 @@ import { useFormState } from "react-dom";
 import { authenticate } from "../lib/actions";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import classes from "./classes";
 
 const errorMap: Record<string, string> = {
   USER_NOT_FOUND: "Hittade ingen användare med den angivna epostaddressen",
@@ -73,10 +74,7 @@ export default function SignIn() {
             </label>
           </div>
           <div className="card-actions justify-end pt-6">
-            <button
-              type="submit"
-              className="btn btn-primary dark:btn-ghost dark:border-gray-400 dark:text-stone-300"
-            >
+            <button type="submit" className={classes.button}>
               Logga in
             </button>
           </div>

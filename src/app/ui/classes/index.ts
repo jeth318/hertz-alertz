@@ -1,5 +1,5 @@
 const button =
-  "btn btn-ghost border-gray-400 dark:text-stone-300 self-end btn-sm";
+  "btn btn-sm btn-primary dark:hover:text-black dark:focus:text-secondary  dark:bg-black dark:text-hertz dark:border-hertz";
 
 const card = "card dark:bg-black bg-base-100 shadow-xl dark:text-black";
 

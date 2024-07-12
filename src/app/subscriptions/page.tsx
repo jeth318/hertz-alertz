@@ -2,6 +2,7 @@ import Table from "../ui/subscriptions/table";
 import Link from "next/link";
 import { getSubscriptionsDataByUserId } from "../lib/actions";
 import routeGuard from "../lib/route-guard";
+import classes from "../ui/classes";
 export default async function Page() {
   const { userId, name, email } = await routeGuard();
   const subscriptions = await getSubscriptionsDataByUserId(userId);
@@ -12,7 +13,7 @@ export default async function Page() {
           <h3 className="text-xl font-semibold">Mina bevakningar</h3>
           <p className="text-sm pb-4 dark:text-stone-500">{email}</p>
           <Link
-            className="btn btn-sm shadow-md dark:hover:text-black btn-primary self-start dark:bg-black dark:text-hertz dark:border-hertz"
+            className={`${classes.button} self-start`}
             href="/subscriptions/create"
           >
             Skapa ny

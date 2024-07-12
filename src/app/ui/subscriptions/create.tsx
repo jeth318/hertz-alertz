@@ -2,6 +2,7 @@ import { createNewSubscription, getCitiesData } from "../../lib/actions";
 import { auth } from "../../../../auth";
 import Image from "next/image";
 import { capitalizeFirst } from "@/app/lib/utils";
+import classes from "../classes";
 export default async function CreateSubscription() {
   /*   const createNewSubscriptionWithUserId = createNewSubscription.bind(
     null,
@@ -63,10 +64,7 @@ export default async function CreateSubscription() {
               </div>
             </div>
             <div className="card-actions justify-end pt-4">
-              <button
-                type="submit"
-                className="btn btn-sm btn-primary dark:hover:text-black  dark:bg-black dark:text-hertz dark:border-hertz"
-              >
+              <button type="submit" className={classes.button}>
                 Lägg till
               </button>
             </div>

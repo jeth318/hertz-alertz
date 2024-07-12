@@ -18,7 +18,10 @@ export default async function Navbar() {
           <ul className="menu menu-horizontal">
             <li>
               {isLoggedIn && (
-                <Link className={classes.button} href="/api/auth/signout">
+                <Link
+                  className="btn btn-sm btn-ghost dark:text-stone-300 border-stone-400"
+                  href="/api/auth/signout"
+                >
                   Logga ut
                 </Link>
               )}
