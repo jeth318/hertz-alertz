@@ -46,6 +46,7 @@ export default function SignIn() {
                 <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
               </svg>
               <input
+                onChange={() => setHasError(false)}
                 type="text"
                 name="email"
                 className="grow"
@@ -66,6 +67,7 @@ export default function SignIn() {
                 />
               </svg>
               <input
+                onChange={() => setHasError(false)}
                 type="password"
                 name="password"
                 placeholder="Lösenord"
@@ -79,6 +81,24 @@ export default function SignIn() {
             </button>
           </div>
         </form>
+        {hasError && errorMessage && (
+          <div role="alert" className="alert alert-error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 shrink-0 stroke-current"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{getErrorMessage(errorMessage)}</span>
+          </div>
+        )}
       </div>
     </div>
   );

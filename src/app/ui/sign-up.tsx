@@ -6,16 +6,30 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import classes from "./classes";
 
+const errorMap: Record<string, string> = {
+  INVALID_CREDENTIALS: "Felaktigt lösenord",
+  EXISTING_ACCOUNT: "Det finns redan ett konto med den angina e-postadressen.",
+};
+
+function getErrorMessage(errorCode: string) {
+  return errorMap[errorCode];
+}
+
 export default function SignUp() {
-  const [validationError, setValidationError] = useState("");
+  const [hasError, setHasError] = useState(false);
   const [state, formAction] = useFormState(signUp, null);
 
+  const [formDetails, setFormDetails] = useState({
+    email: "",
+    name: "",
+    password: "",
+  });
+
   useEffect(() => {
-    if (state?.errorCode === "EXISTING_ACCOUNT") {
-      setValidationError("EXISTING_ACCOUNT");
+    if (state?.errorCode) {
+      setHasError(true);
     }
   }, [state]);
-
   return (
     <div className={classes.card}>
       <div className="card-body p-2">
@@ -24,6 +38,29 @@ export default function SignUp() {
         </h2>
         <form className="pt-4" action={formAction}>
           <div className="flex flex-col gap-4">
+            {/*             <label className={classes.label}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                className="h-4 w-4 opacity-70"
+              >
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+              </svg>
+              <input
+                onChange={(e) => {
+                  setFormDetails({
+                    ...formDetails,
+                    name: e.target.value,
+                  });
+                  setHasError(false);
+                }}
+                type="text"
+                name="name"
+                className="grow"
+                placeholder="Förnamn (om du vill)"
+              />
+            </label> */}
             <label className={classes.label}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -35,28 +72,20 @@ export default function SignUp() {
                 <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
               </svg>
               <input
+                onChange={(e) => {
+                  setFormDetails({
+                    ...formDetails,
+                    email: e.target.value,
+                  });
+                  setHasError(false);
+                }}
                 type="text"
                 name="email"
                 className="grow"
                 placeholder="E-post"
               />
             </label>
-            <label className={classes.label}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="h-4 w-4 opacity-70"
-              >
-                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
-              </svg>
-              <input
-                type="text"
-                name="name"
-                className="grow"
-                placeholder="Förnamn (om du vill)"
-              />
-            </label>
+
             <label className={classes.label}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -71,24 +100,52 @@ export default function SignUp() {
                 />
               </svg>
               <input
+                onChange={(e) => {
+                  setFormDetails({
+                    ...formDetails,
+                    password: e.target.value,
+                  });
+                  setHasError(false);
+                }}
                 type="password"
                 name="password"
+                minLength={5}
                 placeholder="Lösenord"
                 className="grow"
               />
             </label>
-            {validationError && (
-              <div>
-                EXISTING USER <Link href="/login">Click here to login</Link>
-              </div>
-            )}
           </div>
           <div className="card-actions justify-end pt-6">
-            <button type="submit" className={classes.button}>
+            <button
+              type="submit"
+              className={`${classes.button} ${
+                formDetails.email && formDetails.password.length > 4
+                  ? ""
+                  : "btn-disabled"
+              }`}
+            >
               Registrera
             </button>
           </div>
         </form>
+        {hasError && state?.errorCode && (
+          <div role="alert" className="alert alert-error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 shrink-0 stroke-current"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{getErrorMessage(state?.errorCode)}</span>
+          </div>
+        )}
       </div>
     </div>
   );
