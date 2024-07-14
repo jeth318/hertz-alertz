@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth } from "../../auth";
 import Image from "next/image";
+import classes from "./ui/classes";
 
 export default async function Home() {
   const session = await auth();
@@ -41,10 +42,7 @@ export default async function Home() {
           </div>
         )}
         {isLoggedIn && (
-          <Link
-            className="btn btn-primary dark:hover:text-black shadow-md dark:bg-black dark:text-hertz dark:border-hertz"
-            href="/subscriptions"
-          >
+          <Link className={classes.button} href="/subscriptions">
             Mina bevakningar
           </Link>
         )}

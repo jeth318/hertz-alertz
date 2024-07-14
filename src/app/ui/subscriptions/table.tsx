@@ -8,7 +8,7 @@ type Props = {
 
 export default function Table({ subscriptions }: Props) {
   return (
-    <div className="overflow-y-auto max-h-64 rounded-md dark:rounded-none shadow-md">
+    <div className="overflow-y-auto rounded-md dark:rounded-none shadow-md">
       <table className="table table-pin-rows table-pin-cols">
         <thead className="sticky">
           <tr className="dark:border-stone-500">
@@ -33,18 +33,14 @@ export default function Table({ subscriptions }: Props) {
                 key={subscription.id}
                 className="border-b dark:border-stone-500"
               >
-                <td className="p-0 pl-2 border-r dark:border-stone-500 w-[40%] overflow-hidden">
+                <td className="px-2 border-r  dark:border-stone-500 w-[40%]">
                   {subscription.from_city || (
-                    <i className="dark:text-gray-700 text-gray-300">
-                      Hela landet
-                    </i>
+                    <i className="dark:text-stone-300 ">Alla städer</i>
                   )}
                 </td>
-                <td className="border-r dark:border-stone-500 w-[40%]">
+                <td className="px-2 border-r dark:border-stone-500 w-[40%]">
                   {subscription.to_city || (
-                    <i className="dark:text-gray-700 text-gray-300">
-                      Hela landet
-                    </i>
+                    <i className="dark:text-stone-300 ">Alla städer</i>
                   )}{" "}
                 </td>
                 <td className="text-center w-[15%] p-0">
