@@ -29,7 +29,7 @@ export default async function Page() {
         </div>
       </div>
       <div className="flex flex-col dark:bg-black bg-base-100 rounded-md">
-        <Table subscriptions={subscriptions} />
+        <Table subscriptions={subscriptions} userId={userId} />
       </div>
     </div>
   );

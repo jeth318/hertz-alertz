@@ -1,20 +1,47 @@
+"use client";
+
 import { createNewSubscription, getCitiesData } from "../../lib/actions";
-import { auth } from "../../../../auth";
-import Image from "next/image";
 import { capitalizeFirst } from "@/app/lib/utils";
 import classes from "../classes";
-export default async function CreateSubscription() {
+import { useEffect, useState } from "react";
+import { useFormState } from "react-dom";
+import routeGuard from "@/app/lib/route-guard";
+import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { Router } from "next/router";
+import { City } from "@/app/lib/definitions";
+
+const errorMap: Record<string, string> = {
+  IDENTICAL_CITIES: "Du kan inte ange samma stad i båda fälten",
+  INVALID_CREDENTIALS: "Felaktigt lösenord",
+  INVALID_INPUT: "Felaktiga uppgifter",
+};
+
+function getErrorMessage(errorCode: string) {
+  return errorMap[errorCode];
+}
+
+type Props = {
+  cities: City[];
+};
+export default function CreateSubscription({ cities }: Props) {
   /*   const createNewSubscriptionWithUserId = createNewSubscription.bind(
     null,
     fakeSessionUser.id
   ); */
-  const cities = await getCitiesData();
-  const session = await auth();
+  const session = useSession();
+  const userId = session?.data?.user?.id || "";
 
-  const createNewSubscriptionWithId = createNewSubscription.bind(
-    null,
-    session?.user?.id as string
-  );
+  const [hasError, setHasError] = useState(false);
+  const [errorState, formAction] = useFormState(createNewSubscription, null);
+
+  useEffect(() => {
+    if (errorState) {
+      setHasError(true);
+    }
+  }, [errorState]);
+  console.log("State", errorState);
+
   return (
     <>
       <div className="bg-base-100 dark:text-stone-300 dark:bg-black shadow-md rounded-md">
@@ -25,12 +52,7 @@ export default async function CreateSubscription() {
             och till olika städer. Du kommer få e-postmeddelande när det finns
             resor som matchar dessa.
           </p>
-          <form
-            action={async (formData) => {
-              "use server";
-              return await createNewSubscriptionWithId(formData);
-            }}
-          >
+          <form action={formAction}>
             <div className="flex flex-row dark:text-black">
               <div className="flex w-full flex-col gap-4">
                 <select
@@ -69,6 +91,13 @@ export default async function CreateSubscription() {
               </button>
             </div>
           </form>
+          {hasError && errorState?.errorCode && (
+            <div role="alert" className="alert alert-info">
+              <span className="text-white">
+                {getErrorMessage(errorState?.errorCode)}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </>

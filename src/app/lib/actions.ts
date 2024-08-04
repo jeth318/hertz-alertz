@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import { revalidatePath } from "next/cache";
 import { sql } from "@vercel/postgres";
 import { redirect } from "next/navigation";
-import { signIn } from "../../../auth";
+import { auth, signIn } from "../../../auth";
 import { AuthError } from "next-auth";
 import { capitalizeFirst } from "./utils";
 
@@ -86,14 +86,17 @@ export async function getSubscriptionsDataByUserId(id: string) {
   return prettyData;
 }
 
-export async function deleteSubscription(id: number) {
+export async function deleteSubscription(prevState: any, formData: FormData) {
+  const { userId } = {
+    userId: formData.get("userId")?.toString(),
+  };
   try {
     await sql`
-        DELETE FROM subscriptions AS s WHERE s.id = ${id}  
+        DELETE FROM subscriptions AS s WHERE s.id = ${userId}  
       `;
     console.log("Subscription deleted OK");
   } catch (error) {
-    console.error("Database Error: Failed to Delete Subscription");
+    console.error("Database Error: Failed to Delete Subscription", error);
     return {
       message: "Database Error: Failed to Delete Subscription.",
     };
@@ -104,9 +107,12 @@ export async function deleteSubscription(id: number) {
 }
 
 export async function createNewSubscription(
-  userId: string,
+  prevState: any,
   formData: FormData
 ) {
+  const session = await auth();
+  const userId = session?.user?.id || "";
+
   const { fromCityData, toCityData } = {
     fromCityData: formData.get("fromCity")?.toString(),
     toCityData: formData.get("toCity")?.toString(),
@@ -118,6 +124,7 @@ export async function createNewSubscription(
     );
 
     return {
+      errorCode: "IDENTICAL_CITIES",
       message:
         "Database Error: Pickup and destination cities cannot be identical.",
     };
